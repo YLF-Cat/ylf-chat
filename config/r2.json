@@ -1,0 +1,7 @@
+{
+  "accountId": "accountId",
+  "accessKeyId": "accessKeyId",
+  "secretAccessKey": "secretAccessKey",
+  "bucket": "bucket",
+  "publicBaseUrl": "publicBaseUrl" 
+}

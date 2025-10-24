@@ -1,0 +1,28 @@
+{
+  "name": "ylf-chat",
+  "version": "1.0.0",
+  "description": "Realtime web chat with email verification, Markdown + KaTeX rendering, and Cloudflare R2 file sharing.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@aws-sdk/s3-request-presigner": "^3.913.0",
+    "bcryptjs": "^2.4.3",
+    "dompurify": "^3.1.6",
+    "express": "^4.19.2",
+    "express-session": "^1.17.3",
+    "jsdom": "^24.1.0",
+    "katex": "^0.16.10",
+    "markdown-it": "^13.0.1",
+    "markdown-it-katex": "^2.0.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
+    "session-file-store": "^1.5.0",
+    "socket.io": "^4.7.5"
+  }
+}

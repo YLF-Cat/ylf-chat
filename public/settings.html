@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>个人设置 · 漫游聊天室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('chat-theme');
+        var theme = stored === 'dark' || stored === 'light'
+          ? stored
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: "Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+      --bg: linear-gradient(180deg,#eef2ff,#f5f3ff);
+      --bg-accent1: rgba(37,99,235,0.2);
+      --bg-accent2: rgba(124,58,237,0.22);
+      --card-bg: rgba(255,255,255,0.92);
+      --card-shadow1: rgba(15,23,42,0.16);
+      --card-shadow2: rgba(59,130,246,0.12);
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-muted-strong: #1f2937;
+      --side-bg: linear-gradient(150deg, rgba(37,99,235,0.94), rgba(124,58,237,0.88));
+      --side-text: rgba(255,255,255,0.88);
+      --badge-bg: rgba(15,23,42,0.22);
+      --badge-success: rgba(16,185,129,0.28);
+      --badge-warn: rgba(251,191,36,0.35);
+      --input-bg: rgba(255,255,255,0.88);
+      --input-border: rgba(148,163,184,0.4);
+      --radio-bg: rgba(255,255,255,0.74);
+      --radio-border: rgba(148,163,184,0.3);
+      --radio-active-bg: rgba(255,255,255,0.96);
+      --radio-active-shadow: rgba(79,70,229,0.15);
+      --preview-bg: rgba(15,23,42,0.05);
+      --preview-border: rgba(79,70,229,0.22);
+      --button-bg: linear-gradient(135deg,#2563eb,#7c3aed);
+      --button-secondary-bg: rgba(15,23,42,0.08);
+      --download-card-bg: rgba(37,99,235,0.08);
+      --download-card-border: rgba(148,163,184,0.28);
+      --download-card-accent: rgba(37,99,235,0.12);
+    }
+    :root[data-theme="dark"] {
+      --bg: linear-gradient(180deg,#0f172a,#111827);
+      --bg-accent1: rgba(56,189,248,0.12);
+      --bg-accent2: rgba(139,92,246,0.12);
+      --card-bg: rgba(15,23,42,0.85);
+      --card-shadow1: rgba(8,145,178,0.24);
+      --card-shadow2: rgba(59,130,246,0.18);
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-muted-strong: #cbd5f5;
+      --side-bg: linear-gradient(150deg, rgba(37,99,235,0.56), rgba(124,58,237,0.58));
+      --side-text: rgba(226,232,240,0.88);
+      --badge-bg: rgba(255,255,255,0.18);
+      --badge-success: rgba(34,197,94,0.25);
+      --badge-warn: rgba(250,204,21,0.35);
+      --input-bg: rgba(30,41,59,0.78);
+      --input-border: rgba(148,163,184,0.35);
+      --radio-bg: rgba(30,41,59,0.74);
+      --radio-border: rgba(148,163,184,0.28);
+      --radio-active-bg: rgba(59,130,246,0.22);
+      --radio-active-shadow: rgba(59,130,246,0.3);
+      --preview-bg: rgba(30,41,59,0.6);
+      --preview-border: rgba(148,163,184,0.28);
+      --button-secondary-bg: rgba(148,163,184,0.2);
+      --download-card-bg: rgba(59,130,246,0.14);
+      --download-card-border: rgba(96,165,250,0.3);
+      --download-card-accent: rgba(96,165,250,0.18);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1.2rem, 3vw, 2.6rem);
+      background:
+        radial-gradient(130% 120% at 18% -10%, var(--bg-accent1), transparent 55%),
+        radial-gradient(130% 120% at 80% 0%, var(--bg-accent2), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .layout {
+      width: min(1320px, 100%);
+      display: grid;
+      gap: clamp(1.8rem, 3vw, 2.6rem);
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      align-items: stretch;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 32px;
+      box-shadow:
+        0 34px 76px var(--card-shadow1),
+        0 18px 36px var(--card-shadow2);
+      backdrop-filter: blur(26px);
+      overflow: hidden;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card.side {
+      padding: clamp(2.2rem, 4vw, 3.2rem);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      background: var(--side-bg);
+      color: #ffffff;
+      position: relative;
+    }
+    .card.side::after {
+      content: "";
+      position: absolute;
+      inset: 20% -25% auto auto;
+      width: clamp(240px, 45vw, 360px);
+      height: clamp(240px, 45vw, 360px);
+      background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 65%);
+      opacity: 0.78;
+      pointer-events: none;
+    }
+    .side-header h1 {
+      font-size: clamp(2rem, 4vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .side-header p {
+      margin-top: 0.8rem;
+      font-size: 1.04rem;
+      line-height: 1.85;
+      color: var(--side-text);
+    }
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      padding: 1.6rem;
+      border-radius: 26px;
+      background: rgba(15,23,42,0.18);
+      backdrop-filter: blur(14px);
+    }
+    .profile-card header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .profile-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      object-fit: cover;
+      box-shadow: 0 18px 34px rgba(15,23,42,0.3);
+    }
+    .profile-card h2 { font-size: 1.35rem; font-weight: 700; letter-spacing: 0.04em; }
+    .profile-card p { font-size: 0.95rem; color: rgba(255,255,255,0.82); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--badge-bg);
+      color: #ffffff;
+    }
+    .badge.success { background: var(--badge-success); }
+    .badge.warn { background: var(--badge-warn); }
+    .card.main,
+    .card.downloads {
+      padding: clamp(2.1rem, 3.4vw, 3.1rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    .card.downloads { gap: 1.4rem; }
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .main-header h2 {
+      font-size: clamp(1.8rem, 3vw, 1.95rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .main-header button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.65rem 1.4rem;
+      background: rgba(15,23,42,0.08);
+      color: var(--text-muted-strong);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .main-header button:hover { background: rgba(15,23,42,0.14); }
+    :root[data-theme="dark"] .main-header button {
+      background: rgba(148,163,184,0.22);
+      color: #e2e8f0;
+    }
+    .message {
+      display: none;
+      padding: 0.9rem 1.1rem;
+      border-radius: 18px;
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+    .message.show { display: block; }
+    .message.error {
+      background: rgba(248,113,113,0.12);
+      color: #b91c1c;
+      border: 1px solid rgba(239,68,68,0.24);
+    }
+    .message.success {
+      background: rgba(34,197,94,0.12);
+      color: #047857;
+      border: 1px solid rgba(16,185,129,0.2);
+    }
+    .form-section { display: grid; gap: 1.6rem; }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-weight: 600;
+      color: var(--text-muted-strong);
+      font-size: 0.98rem;
+    }
+    input[type="text"], input[type="url"], input[type="email"],
+    input[type="password"], input[type="number"] {
+      padding: 0.95rem 1.15rem;
+      border-radius: 18px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      font: inherit;
+      color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    input:focus,
+    input[type="file"]:focus-visible {
+      outline: none;
+      border-color: rgba(79,70,229,0.88);
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.18);
+      background: rgba(255,255,255,0.97);
+    }
+    :root[data-theme="dark"] input:focus { background: rgba(15,23,42,0.9); }
+    .readonly {
+      background: rgba(15,23,42,0.04);
+      border-style: dashed;
+      color: var(--text-muted);
+    }
+    :root[data-theme="dark"] .readonly { background: rgba(30,41,59,0.5); }
+    .grid-two {
+      display: grid;
+      gap: 1.1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .radio-group { display: grid; gap: 0.8rem; }
+    .radio-option {
+      display: flex;
+      align-items: left;
+      gap: 0.85rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: 18px;
+      border: 1px solid var(--radio-border);
+      background: var(--radio-bg);
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .radio-option input { accent-color: #6366f1; transform: scale(1.1); }
+    .radio-option.active {
+      border-color: rgba(79,70,229,0.9);
+      background: var(--radio-active-bg);
+      box-shadow: 0 10px 24px var(--radio-active-shadow);
+    }
+    .file-input {
+      padding: 0.75rem;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: rgba(255,255,255,0.82);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    :root[data-theme="dark"] .file-input {
+      background: rgba(30,41,59,0.6);
+      border-color: rgba(148,163,184,0.32);
+      color: #cbd5f5;
+    }
+    .hidden { display: none !important; }
+    .preview {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1rem 1.1rem;
+      border-radius: 20px;
+      background: var(--preview-bg);
+      border: 1px dashed var(--preview-border);
+    }
+    .preview img {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 18px 32px rgba(15,23,42,0.18);
+    }
+    .preview span {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .form-subtitle {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 0.6rem;
+    }
+    .actions button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.95rem 1.6rem;
+      background: var(--button-bg);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow:
+        0 18px 34px rgba(79,70,229,0.3),
+        0 12px 24px rgba(37,99,235,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .actions button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow:
+        0 22px 40px rgba(79,70,229,0.38),
+        0 14px 28px rgba(37,99,235,0.24);
+    }
+    .actions button.secondary {
+      background: var(--button-secondary-bg);
+      color: var(--text-muted-strong);
+      box-shadow: none;
+    }
+    .actions button:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+    .inline-control {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      color: var(--text-muted-strong);
+    }
+    .inline-control input[type="checkbox"] {
+      width: 44px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.3);
+      appearance: none;
+      background: rgba(148,163,184,0.25);
+      position: relative;
+      transition: background 0.2s ease;
+    }
+    .inline-control input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      transition: transform 0.2s ease;
+    }
+    .inline-control input[type="checkbox"]:checked {
+      background: linear-gradient(135deg,#2563eb,#7c3aed);
+    }
+    .inline-control input[type="checkbox"]:checked::before {
+      transform: translateX(20px);
+    }
+    :root[data-theme="dark"] .inline-control input[type="checkbox"] {
+      background: rgba(148,163,184,0.35);
+      border-color: rgba(148,163,184,0.35);
+    }
+    .downloads h2 {
+      font-size: clamp(1.6rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: var(--text);
+    }
+    .downloads > p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .download-grid {
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: 1fr;
+    }
+    .download-card {
+      padding: 1rem 1.3rem;
+      border-radius: 20px;
+      border: 1px solid var(--download-card-border);
+      background: var(--download-card-bg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .download-card h4 { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .download-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .download-card form,
+    .download-card .download-controls { display: grid; gap: 0.8rem; }
+    .download-card button {
+      justify-self: flex-start;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg,#2563eb,#7c3aed);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(79,70,229,0.24);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .download-card button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(79,70,229,0.32);
+    }
+    .download-card button:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+    .download-hint { font-size: 0.85rem; color: var(--text-muted); }
+    .download-list { display: grid; gap: 0.9rem; }
+    .download-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 0.9rem;
+      align-items: center;
+      padding: 0.85rem 1rem;
+      border-radius: 18px;
+      background: rgba(37,99,235,0.08);
+      border: 1px solid rgba(148,163,184,0.2);
+    }
+    .download-row strong { display: block; font-size: 0.95rem; color: var(--text); word-break: break-all; }
+    .download-row span { font-size: 0.85rem; color: var(--text-muted); }
+    .download-row button {
+      padding: 0.65rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg,#2563eb,#7c3aed);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(79,70,229,0.22);
+    }
+    .download-empty {
+      text-align: center;
+      padding: 1.2rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      background: rgba(148,163,184,0.12);
+      border-radius: 18px;
+    }
+    @media (max-width: 860px) {
+      body { padding: 1.1rem; }
+      .layout { gap: 1.4rem; }
+      .card, .card.side { border-radius: 26px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="card side">
+      <div class="side-header">
+        <h1>个人设置</h1>
+        <p>修改昵称、头像来源或主题。邮箱未验证时可重发验证邮件，完成后即可发言。</p>
+      </div>
+      <div class="profile-card">
+        <header>
+          <img id="profile-avatar" src="https://cravatar.cn/avatar?d=identicon&s=160" alt="当前头像">
+          <div>
+            <h2 id="profile-name">加载中…</h2>
+            <p id="profile-email">请稍候</p>
+          </div>
+        </header>
+        <div id="verification-badge" class="badge">验证状态加载中…</div>
+      </div>
+      <button class="badge secondary" id="back-link" style="align-self:flex-start; border:none; background:rgba(255,255,255,0.1); cursor:pointer;">
+        ← 返回聊天室
+      </button>
+    </aside>
+
+    <main class="card main">
+      <div class="main-header">
+        <div>
+          <h2>资料与偏好</h2>
+          <p style="margin-top:0.4rem; color:var(--text-muted); line-height:1.6;">
+            修改会立即保存，重新进入聊天室即可看到最新资料。
+          </p>
+        </div>
+        <button id="logout-btn">退出登录</button>
+      </div>
+
+      <div id="message" class="message" role="alert"></div>
+
+      <form id="settings-form" class="form-section" enctype="multipart/form-data" novalidate>
+        <label>
+          注册邮箱
+          <input type="email" id="email-display" class="readonly" readonly>
+        </label>
+
+        <div class="grid-two">
+          <label>
+            昵称
+            <input type="text" name="displayName" id="display-name" maxlength="32" required placeholder="请输入新的昵称">
+          </label>
+
+          <label>
+            邮箱验证状态
+            <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap;">
+              <input type="text" id="verification-status" class="readonly" readonly style="flex:1;">
+              <button type="button" id="verification-resend" class="badge secondary" style="display:none; border:none; cursor:pointer;">
+                重新发送验证邮件
+              </button>
+            </div>
+          </label>
+        </div>
+
+        <div class="inline-control">
+          <input type="checkbox" id="theme-toggle">
+          <label for="theme-toggle" style="margin:0;">启用深色模式</label>
+        </div>
+
+        <div>
+          <label>头像来源</label>
+          <div class="radio-group" id="avatar-options">
+            <label class="radio-option">
+              <input type="radio" name="avatarSource" value="gravatar">
+              <div>
+                <strong>Cravatar</strong>
+                <div>兼容 Gravatar，国内节点加速。</div>
+              </div>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="avatarSource" value="url">
+              <div>
+                <strong>图片链接</strong>
+                <div>引用一张公开的 http(s) 图片作为头像。</div>
+              </div>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="avatarSource" value="upload">
+              <div>
+                <strong>上传文件</strong>
+                <div>图片保存在服务器，支持 PNG / JPG / GIF / WebP。</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <label id="avatar-url-field" class="hidden">
+          头像图片链接
+          <input type="url" name="avatarUrl" id="avatar-url" placeholder="https://example.com/avatar.png">
+        </label>
+
+        <label id="avatar-file-field" class="hidden">
+          上传头像
+          <input class="file-input" type="file" name="avatarFile" id="avatar-file" accept="image/png,image/jpeg,image/jpg,image/gif,image/webp">
+        </label>
+
+        <div class="preview">
+          <img id="preview-image" src="https://cravatar.cn/avatar?d=identicon&s=160" alt="头像预览">
+          <span id="preview-text">头像预览将根据当前选择即时更新。</span>
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="submit-btn">保存修改</button>
+          <button type="button" class="secondary" id="back-btn">返回聊天室</button>
+        </div>
+      </form>
+
+      <section class="form-section" style="margin-top:1.4rem;">
+        <h3 class="form-subtitle">修改密码</h3>
+        <form id="password-form" class="form-section" novalidate>
+          <label>
+            旧密码
+            <input type="password" name="oldPassword" id="old-password" autocomplete="current-password" required placeholder="请输入旧密码">
+          </label>
+          <div class="grid-two">
+            <label>
+              新密码
+              <input type="password" name="newPassword" id="new-password" autocomplete="new-password" required placeholder="至少 8 个字符">
+            </label>
+            <label>
+              确认新密码
+              <input type="password" name="confirmPassword" id="confirm-password" autocomplete="new-password" required placeholder="再输入一次新密码">
+            </label>
+          </div>
+          <div class="actions">
+            <button type="submit" id="password-submit">更新密码</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <section class="card downloads">
+      <h2>高速下载面板</h2>
+      <p>配置下载策略、按编码下载聊天文件，或使用多线程下载任意 URL。</p>
+
+      <div class="download-grid">
+        <div class="download-card">
+          <h4>下载设置</h4>
+          <p>开启高速模式后，下载聊天文件会使用多线程分块方式，可自定义并发数量。</p>
+          <div class="download-controls">
+            <label class="inline-control">
+              <input type="checkbox" id="dl-enable-toggle">
+              <span>启用高速下载</span>
+            </label>
+            <label>
+              并行线程数
+              <input type="number" id="dl-concurrency" min="1" max="8" value="4">
+              <span class="download-hint">推荐 3~6 线程，过高可能导致服务器限速。</span>
+            </label>
+            <label>
+              分块大小（KB）
+              <input type="number" id="dl-chunk" min="128" max="8192" step="128" value="2048">
+              <span class="download-hint">默认 2048 KB，可根据网络情况调整。</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="download-card">
+          <h4>按文件编码下载</h4>
+          <p>输入在聊天室收到的 8 位文件编码，直接使用高速下载器获取文件。</p>
+          <form id="code-download-form" novalidate>
+            <label>
+              文件编码
+              <input type="text" id="code-download-input" maxlength="64" placeholder="例如：ABCD1234" required>
+            </label>
+            <button type="submit" id="code-download-submit">下载文件</button>
+            <div id="code-download-message" class="download-hint"></div>
+          </form>
+        </div>
+
+        <div class="download-card">
+          <h4>下载任意 URL</h4>
+          <p>输入直链 URL，可使用同样的多线程下载逻辑（需服务器支持 Range 请求）。</p>
+          <form id="url-download-form" novalidate>
+            <label>
+              文件地址
+              <input type="url" id="url-download-input" placeholder="https://example.com/file.zip" required>
+            </label>
+            <label>
+              自定义文件名
+              <input type="text" id="url-download-name" placeholder="可选，例如 file.zip">
+            </label>
+            <button type="submit" id="url-download-submit">开始下载</button>
+            <div id="url-download-message" class="download-hint"></div>
+          </form>
+        </div>
+      </div>
+
+      <section style="margin-top:1.4rem;">
+        <h4 style="font-size:1rem; font-weight:700; color:var(--text);">我上传的文件</h4>
+        <p class="download-hint">下方列出你在聊天室上传的所有文件，可随时重新下载。</p>
+        <div id="upload-list" class="download-list"></div>
+        <div id="upload-empty" class="download-empty" hidden>尚未上传过文件。</div>
+      </section>
+    </section>
+  </div>
+
+  <script src="/theme.js"></script>
+  <script src="/download-manager.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/presence.js"></script>
+  <script>
+    Theme.init();
+  </script>
+  <script>
+    const profileAvatar = document.getElementById('profile-avatar');
+    const profileName = document.getElementById('profile-name');
+    const profileEmail = document.getElementById('profile-email');
+    const verificationBadge = document.getElementById('verification-badge');
+    const emailDisplay = document.getElementById('email-display');
+    const verificationStatus = document.getElementById('verification-status');
+    const verificationResend = document.getElementById('verification-resend');
+    const displayNameInput = document.getElementById('display-name');
+    const avatarUrlField = document.getElementById('avatar-url-field');
+    const avatarFileField = document.getElementById('avatar-file-field');
+    const avatarUrlInput = document.getElementById('avatar-url');
+    const avatarFileInput = document.getElementById('avatar-file');
+    const previewImage = document.getElementById('preview-image');
+    const previewText = document.getElementById('preview-text');
+    const messageEl = document.getElementById('message');
+    const submitBtn = document.getElementById('submit-btn');
+    const backBtn = document.getElementById('back-btn');
+    const backLink = document.getElementById('back-link');
+    const logoutBtn = document.getElementById('logout-btn');
+    const form = document.getElementById('settings-form');
+    const radioOptions = Array.from(document.querySelectorAll('#avatar-options .radio-option'));
+    const themeToggle = document.getElementById('theme-toggle');
+
+    const passwordForm = document.getElementById('password-form');
+    const passwordSubmit = document.getElementById('password-submit');
+    const passwordMessage = document.createElement('div');
+    passwordMessage.className = 'message';
+    passwordForm.insertBefore(passwordMessage, passwordForm.firstChild);
+
+    const dlEnableToggle = document.getElementById('dl-enable-toggle');
+    const dlConcurrency = document.getElementById('dl-concurrency');
+    const dlChunk = document.getElementById('dl-chunk');
+    const codeDownloadForm = document.getElementById('code-download-form');
+    const codeDownloadInput = document.getElementById('code-download-input');
+    const codeDownloadSubmit = document.getElementById('code-download-submit');
+    const codeDownloadMessage = document.getElementById('code-download-message');
+    const urlDownloadForm = document.getElementById('url-download-form');
+    const urlDownloadInput = document.getElementById('url-download-input');
+    const urlDownloadName = document.getElementById('url-download-name');
+    const urlDownloadSubmit = document.getElementById('url-download-submit');
+    const urlDownloadMessage = document.getElementById('url-download-message');
+    const uploadList = document.getElementById('upload-list');
+    const uploadEmpty = document.getElementById('upload-empty');
+
+    const urlMetadataCache = new Map();
+
+    let currentUser = null;
+    let resendCooldown = 0;
+    let resendTimer = null;
+
+    backBtn.addEventListener('click', () => window.location.replace('/'));
+    backLink.addEventListener('click', () => window.location.replace('/'));
+    logoutBtn.addEventListener('click', async () => {
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+      window.location.replace('/login.html');
+    });
+
+    themeToggle.addEventListener('change', () => {
+      Theme.set(themeToggle.checked ? 'dark' : 'light');
+    });
+    window.addEventListener('themechange', event => {
+      const next = event.detail;
+      themeToggle.checked = next === 'dark';
+    });
+
+    async function fetchWithFallback(url, options) {
+      try {
+        return await fetch(url, options);
+      } catch (error) {
+        if (options && options.method === 'HEAD') {
+          return fetch(url, { ...options, method: 'GET' });
+        }
+        throw error;
+      }
+    }
+
+    async function resolveUrlMetadata(url) {
+      if (!url) return { error: '无效的链接' };
+      if (urlMetadataCache.has(url)) {
+        const cached = urlMetadataCache.get(url);
+        if (cached.state === 'done' || cached.state === 'error') {
+          return cached.meta;
+        }
+        if (cached.promise) return cached.promise;
+      }
+
+      const cached = { meta: null, state: 'pending', promise: null };
+      urlMetadataCache.set(url, cached);
+
+      cached.promise = fetchWithFallback(url, { method: 'HEAD' })
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return extractMetadata(url, res);
+        })
+        .catch(async () => {
+          const res = await fetchWithFallback(url, { method: 'GET' });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return extractMetadata(url, res);
+        })
+        .then(meta => {
+          cached.meta = { ...meta, url };
+          cached.state = 'done';
+          return cached.meta;
+        })
+        .catch(err => {
+          cached.meta = { error: err.message || '无法获取文件信息', url };
+          cached.state = 'error';
+          return cached.meta;
+        });
+
+      return cached.promise;
+    }
+
+    function extractMetadata(url, response) {
+      const headers = response.headers;
+      const disposition = headers.get('content-disposition') || '';
+      const length = headers.get('content-length');
+      const type = headers.get('content-type') || '';
+
+      const nameFromDisposition = (() => {
+        const match = /filename\*=UTF-8''([^;]+)|filename="?([^";]+)"?/i.exec(disposition);
+        if (!match) return null;
+        const [, encoded, plain] = match;
+        try {
+          return encoded ? decodeURIComponent(encoded) : plain;
+        } catch (_) {
+          return plain;
+        }
+      })();
+
+      const customHeaderName =
+        headers.get('x-filename') ||
+        headers.get('x-file-name') ||
+        headers.get('x-original-filename');
+
+      const fallbackName = deriveFileNameFromUrl(url);
+      const fileName = nameFromDisposition || customHeaderName || fallbackName;
+      const size = length && !Number.isNaN(Number(length)) ? Number(length) : undefined;
+
+      let supportsRange;
+      const acceptRanges = headers.get('accept-ranges');
+      if (acceptRanges && acceptRanges.toLowerCase().includes('bytes')) {
+        supportsRange = true;
+      } else if (acceptRanges && acceptRanges.toLowerCase() === 'none') {
+        supportsRange = false;
+      } else if (headers.get('content-range')) {
+        supportsRange = true;
+      }
+
+      return {
+        fileName,
+        contentType: type || undefined,
+        size,
+        supportsRange
+      };
+    }
+
+    function deriveFileNameFromUrl(url) {
+      try {
+        const parsed = new URL(url);
+        const candidate = parsed.pathname.split('/').pop() || 'download';
+        return decodeURIComponent(candidate);
+      } catch {
+        try {
+          const tail = url.split('/').pop() || 'download';
+          return decodeURIComponent(tail);
+        } catch {
+          return 'download';
+        }
+      }
+    }
+
+    function triggerBrowserDownload(url, fileName) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.rel = 'noopener';
+      link.target = '_blank';
+      if (fileName) link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    async function runDownload(meta, updateMessage) {
+      if (!meta || !meta.url) throw new Error('下载链接无效。');
+      const setMessage = typeof updateMessage === 'function' ? updateMessage : () => {};
+      let resolvedMeta = { ...meta, url: meta.url };
+
+      setMessage('正在准备下载…');
+
+      const needsResolve =
+        meta.forceResolve ||
+        !resolvedMeta.fileName ||
+        resolvedMeta.size === undefined ||
+        resolvedMeta.size === null ||
+        resolvedMeta.size <= 0;
+
+      if (needsResolve) {
+        setMessage('正在解析文件信息…');
+        let remoteMeta;
+        try {
+          remoteMeta = await resolveUrlMetadata(resolvedMeta.url);
+          if (remoteMeta.error) throw new Error(remoteMeta.error);
+        } catch (error) {
+          console.error('解析链接信息失败，将直接触发浏览器下载。', error);
+          const fallbackName = resolvedMeta.fileName || deriveFileNameFromUrl(resolvedMeta.url);
+          triggerBrowserDownload(resolvedMeta.url, fallbackName);
+          setMessage('无法解析文件信息，已触发浏览器下载。');
+          return { ...resolvedMeta, fileName: fallbackName, supportsRange: false };
+        }
+        resolvedMeta = {
+          ...resolvedMeta,
+          ...remoteMeta,
+          url: resolvedMeta.url
+        };
+        setMessage('信息解析完成，准备下载…');
+      }
+
+      const settings = DownloadSettings.get();
+      const canUseHighSpeed =
+        settings.enabled &&
+        typeof HighSpeedDownloader !== 'undefined' &&
+        HighSpeedDownloader.isSupported() &&
+        resolvedMeta.supportsRange !== false;
+
+      if (canUseHighSpeed) {
+        const downloader = new HighSpeedDownloader({
+          url: resolvedMeta.url,
+          size: resolvedMeta.size,
+          fileName: resolvedMeta.fileName,
+          contentType: resolvedMeta.contentType,
+          concurrency: settings.concurrency,
+          chunkSize: settings.chunkSize,
+          onProgress(progress) {
+            setMessage(`下载进度 ${progress.percent}%`);
+          }
+        });
+
+        try {
+          await downloader.start();
+          setMessage(
+            resolvedMeta.size
+              ? `下载完成 · ${DownloadSettings.formatBytes(resolvedMeta.size)}`
+              : '下载完成'
+          );
+          return resolvedMeta;
+        } catch (error) {
+          console.error('高速下载失败，将回退到浏览器下载。', error);
+          setMessage('高速下载失败，正在切换普通下载…');
+          const cacheEntry = urlMetadataCache.get(resolvedMeta.url);
+          if (cacheEntry && cacheEntry.meta && !cacheEntry.meta.error) {
+            cacheEntry.meta.supportsRange = false;
+          }
+        }
+      }
+
+      triggerBrowserDownload(resolvedMeta.url, resolvedMeta.fileName);
+      setMessage(
+        resolvedMeta.size
+          ? `已触发浏览器下载 · ${DownloadSettings.formatBytes(resolvedMeta.size)}`
+          : '已触发浏览器下载。'
+      );
+      return resolvedMeta;
+    }
+
+    async function loadProfile() {
+      try {
+        const res = await fetch('/api/auth/session', { credentials: 'include' });
+        const data = await res.json();
+        if (!data.authenticated) {
+          window.location.replace('/login.html');
+          return;
+        }
+        currentUser = data.user;
+        applyProfile();
+        loadDownloadSettings();
+        loadUploadedFiles();
+      } catch (error) {
+        console.error(error);
+        showMessage('无法加载用户信息，请稍后再试。', 'error');
+      }
+    }
+
+    function applyProfile() {
+      const user = currentUser;
+      profileAvatar.src = user.avatarUrl || 'https://cravatar.cn/avatar?d=identicon&s=160';
+      profileAvatar.onerror = () => {
+        profileAvatar.onerror = null;
+        profileAvatar.src = 'https://cravatar.cn/avatar?d=identicon&s=160';
+      };
+      profileName.textContent = user.displayName;
+      profileEmail.textContent = user.email;
+      emailDisplay.value = user.email;
+      displayNameInput.value = user.displayName;
+      verificationStatus.value = user.isVerified ? '已验证，可以发言' : '未验证，只能浏览消息';
+      verificationBadge.textContent = user.isVerified ? '邮箱已验证' : '邮箱未验证';
+      verificationBadge.className = user.isVerified ? 'badge success' : 'badge warn';
+      verificationResend.style.display = user.isVerified ? 'none' : 'inline-flex';
+      if (!user.isVerified) {
+        updateResendLabel();
+      }
+
+      themeToggle.checked = Theme.get() === 'dark';
+      const source = user.avatarSource || 'gravatar';
+      const currentOption = document.querySelector(`input[name="avatarSource"][value="${source}"]`) || document.querySelector('input[name="avatarSource"][value="gravatar"]');
+      currentOption.checked = true;
+      handleAvatarChange();
+
+      if (source === 'url') {
+        avatarUrlInput.value = user.avatarUrl || '';
+      } else {
+        avatarUrlInput.value = '';
+      }
+
+      if (source === 'upload') {
+        previewText.textContent = '当前使用：已上传头像，如需更换请重新上传文件。';
+      }
+
+      previewImage.src = user.avatarUrl || 'https://cravatar.cn/avatar?d=identicon&s=160';
+      previewImage.onerror = () => {
+        previewImage.onerror = null;
+        previewImage.src = 'https://cravatar.cn/avatar?d=identicon&s=160';
+      };
+    }
+
+    radioOptions.forEach(option => {
+      option.addEventListener('change', handleAvatarChange);
+      option.addEventListener('click', () => {
+        option.querySelector('input').checked = true;
+        handleAvatarChange();
+      });
+    });
+
+    function handleAvatarChange() {
+      radioOptions.forEach(option => option.classList.remove('active'));
+      const activeInput = document.querySelector('input[name="avatarSource"]:checked');
+      const activeOption = activeInput.closest('.radio-option');
+      activeOption.classList.add('active');
+
+      const source = activeInput.value;
+      avatarUrlField.classList.toggle('hidden', source !== 'url');
+      avatarFileField.classList.toggle('hidden', source !== 'upload');
+
+      if (source === 'gravatar') {
+        previewImage.src = currentUser.avatarUrl || 'https://cravatar.cn/avatar?d=identicon&s=160';
+        previewText.textContent = '头像预览：Cravatar（兼容 Gravatar，国内节点加速）';
+      } else if (source === 'url') {
+        const url = avatarUrlInput.value.trim() || currentUser.avatarUrl;
+        previewImage.src = url || 'https://cravatar.cn/avatar?d=identicon&s=160';
+        previewText.textContent = url ? '头像预览：自定义链接。' : '填写图片链接后即可预览。';
+      } else {
+        previewImage.src = currentUser.avatarUrl || 'https://cravatar.cn/avatar?d=identicon&s=160';
+        previewText.textContent = '上传新图片将覆盖当前头像，最大 10 MB。';
+      }
+    }
+
+    avatarUrlInput.addEventListener('input', () => {
+      if (document.querySelector('input[name="avatarSource"]:checked').value === 'url') {
+        const url = avatarUrlInput.value.trim();
+        if (url) {
+          previewImage.src = url;
+          previewText.textContent = '头像预览：自定义链接。';
+        } else {
+          previewImage.src = 'https://cravatar.cn/avatar?d=identicon&s=160';
+          previewText.textContent = '填写图片链接后即可预览。';
+        }
+      }
+    });
+
+    avatarFileInput.addEventListener('change', () => {
+      const file = avatarFileInput.files[0];
+      if (!file) {
+        previewImage.src = currentUser.avatarUrl || 'https://cravatar.cn/avatar?d=identicon&s=160';
+        previewText.textContent = '上传新图片将覆盖当前头像，最大 10 MB。';
+        return;
+      }
+      const url = URL.createObjectURL(file);
+      previewImage.src = url;
+      previewText.textContent = `新头像：${file.name}（${Math.round(file.size / 1024)} KB）`;
+    });
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      hideMessage();
+
+      if (!form.reportValidity()) return;
+
+      const source = form.avatarSource.value;
+      if (source === 'url' && !avatarUrlInput.value.trim()) {
+        showMessage('请输入头像链接。', 'error');
+        return;
+      }
+      if (source === 'upload' && avatarFileInput.files.length === 0 && currentUser.avatarSource !== 'upload') {
+        showMessage('请选择要上传的头像图片。', 'error');
+        return;
+      }
+
+      const formData = new FormData(form);
+      try {
+        setSubmitting(true, '保存中…');
+        const res = await fetch('/api/users/me', {
+          method: 'POST',
+          credentials: 'include',
+          body: formData
+        });
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+          const msg = data.message || '保存失败，请稍后再试。';
+          showMessage(msg, 'error');
+          setSubmitting(false);
+          return;
+        }
+
+        currentUser = data.user;
+        applyProfile();
+        showMessage('资料已更新。重新进入聊天室即可看到最新头像与昵称。', 'success');
+        setSubmitting(false);
+      } catch (error) {
+        console.error(error);
+        showMessage('服务器开小差了，请稍后再试。', 'error');
+        setSubmitting(false);
+      }
+    });
+
+    const passwordFormApi = '/api/users/me/password';
+    passwordForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      hidePasswordMessage();
+
+      const oldPassword = document.getElementById('old-password').value.trim();
+      const newPassword = document.getElementById('new-password').value.trim();
+      const confirmPassword = document.getElementById('confirm-password').value.trim();
+
+      if (!oldPassword || !newPassword || !confirmPassword) {
+        showPasswordMessage('请完整填写所有字段。', 'error');
+        return;
+      }
+      if (newPassword.length < 8) {
+        showPasswordMessage('新密码至少需要 8 个字符。', 'error');
+        return;
+      }
+      if (newPassword !== confirmPassword) {
+        showPasswordMessage('两次输入的新密码不一致。', 'error');
+        return;
+      }
+
+      try {
+        setPasswordSubmitting(true);
+        const res = await fetch(passwordFormApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ oldPassword, newPassword, confirmPassword })
+        });
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+          showPasswordMessage(data.message || '修改失败，请稍后再试。', 'error');
+          setPasswordSubmitting(false);
+          return;
+        }
+
+        showPasswordMessage('密码已更新，请使用新密码重新登录。', 'success');
+        setPasswordSubmitting(false);
+        setTimeout(() => window.location.replace('/login.html'), 1200);
+      } catch (error) {
+        console.error(error);
+        showPasswordMessage('服务器开小差了，请稍后再试。', 'error');
+        setPasswordSubmitting(false);
+      }
+    });
+
+    verificationResend.addEventListener('click', () => {
+      if (resendCooldown > 0) return;
+      resendCooldown = 60;
+      updateResendLabel();
+      fetch('/api/auth/resend-verification', {
+        method: 'POST',
+        credentials: 'include'
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.message) showMessage(data.message, 'success');
+        })
+        .catch(() => showMessage('重发失败，请稍后再试。', 'error'));
+
+      resendTimer = setInterval(() => {
+        resendCooldown -= 1;
+        if (resendCooldown <= 0) {
+          clearInterval(resendTimer);
+          resendCooldown = 0;
+        }
+        updateResendLabel();
+      }, 1000);
+    });
+
+    function updateResendLabel() {
+      if (!verificationResend || currentUser.isVerified) return;
+      verificationResend.disabled = resendCooldown > 0;
+      verificationResend.textContent =
+        resendCooldown > 0 ? `重新发送 (${resendCooldown}s)` : '重新发送验证邮件';
+    }
+
+    function showMessage(text, type) {
+      messageEl.textContent = text;
+      messageEl.className = `message show ${type}`;
+    }
+    function hideMessage() {
+      messageEl.textContent = '';
+      messageEl.className = 'message';
+    }
+    function setSubmitting(active, label) {
+      submitBtn.disabled = active;
+      submitBtn.textContent = label || '保存修改';
+    }
+    function showPasswordMessage(text, type) {
+      passwordMessage.textContent = text;
+      passwordMessage.className = `message show ${type}`;
+    }
+    function hidePasswordMessage() {
+      passwordMessage.textContent = '';
+      passwordMessage.className = 'message';
+    }
+    function setPasswordSubmitting(active) {
+      passwordSubmit.disabled = active;
+      passwordSubmit.textContent = active ? '更新中…' : '更新密码';
+    }
+
+    function loadDownloadSettings() {
+      const settings = DownloadSettings.get();
+      dlEnableToggle.checked = settings.enabled;
+      dlConcurrency.value = settings.concurrency;
+      dlChunk.value = Math.round((settings.chunkSize || 2 * 1024 * 1024) / 1024);
+      dlConcurrency.disabled = !settings.enabled;
+      dlChunk.disabled = !settings.enabled;
+    }
+    function persistDownloadSettings(partial) {
+      const current = DownloadSettings.get();
+      const next = { ...current, ...partial };
+      DownloadSettings.set(next);
+      dlEnableToggle.checked = next.enabled;
+      dlConcurrency.disabled = !next.enabled;
+      dlChunk.disabled = !next.enabled;
+    }
+    dlEnableToggle.addEventListener('change', () => {
+      persistDownloadSettings({ enabled: dlEnableToggle.checked });
+    });
+    dlConcurrency.addEventListener('change', () => {
+      const value = Math.min(Math.max(Number(dlConcurrency.value) || 4, 1), 8);
+      dlConcurrency.value = value;
+      persistDownloadSettings({ concurrency: value });
+    });
+    dlChunk.addEventListener('change', () => {
+      let value = Number(dlChunk.value) || 2048;
+      value = Math.min(Math.max(value, 128), 8192);
+      dlChunk.value = value;
+      persistDownloadSettings({ chunkSize: value * 1024 });
+    });
+
+    codeDownloadForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      codeDownloadMessage.textContent = '';
+      const raw = codeDownloadInput.value.trim().toUpperCase();
+      if (!raw) {
+        codeDownloadMessage.textContent = '请输入有效的文件编码。';
+        return;
+      }
+      codeDownloadSubmit.disabled = true;
+      codeDownloadSubmit.textContent = '请求中…';
+      try {
+        const meta = await requestPresign(raw);
+        await runDownload(meta, msg => {
+          codeDownloadMessage.textContent = msg;
+        });
+      } catch (error) {
+        console.error(error);
+        codeDownloadMessage.textContent = '下载失败，请稍后再试。';
+        alert(error.message || '下载失败，请稍后再试。');
+      } finally {
+        codeDownloadSubmit.disabled = false;
+        codeDownloadSubmit.textContent = '下载文件';
+      }
+    });
+
+    urlDownloadForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      urlDownloadMessage.textContent = '';
+      const url = urlDownloadInput.value.trim();
+      if (!url) {
+        urlDownloadMessage.textContent = '请输入有效的 URL。';
+        return;
+      }
+      const fileName = (urlDownloadName.value.trim() || '').replace(/[\\/:*?"<>|]/g, '_') || undefined;
+      urlDownloadSubmit.disabled = true;
+      urlDownloadSubmit.textContent = '下载中…';
+      try {
+        await runDownload(
+          { url, fileName, forceResolve: true },
+          msg => {
+            urlDownloadMessage.textContent = msg;
+          }
+        );
+      } catch (error) {
+        console.error(error);
+        urlDownloadMessage.textContent = '下载失败，请检查链接是否支持跨域访问。';
+        alert(error.message || '下载失败，请稍后再试。');
+      } finally {
+        urlDownloadSubmit.disabled = false;
+        urlDownloadSubmit.textContent = '开始下载';
+      }
+    });
+
+    async function loadUploadedFiles() {
+      try {
+        const res = await fetch('/api/files/me', { credentials: 'include' });
+        if (!res.ok) throw new Error('failed');
+        const data = await res.json();
+        renderUploadedFiles(Array.isArray(data.files) ? data.files : []);
+      } catch (error) {
+        console.error('无法加载上传记录', error);
+        uploadList.innerHTML = '';
+        uploadEmpty.hidden = false;
+        uploadEmpty.textContent = '无法获取上传记录，请稍后再试。';
+      }
+    }
+
+    function renderUploadedFiles(files) {
+      uploadList.innerHTML = '';
+      if (!files.length) {
+        uploadEmpty.hidden = false;
+        uploadEmpty.textContent = '尚未上传过文件。';
+        return;
+      }
+      uploadEmpty.hidden = true;
+      const fragment = document.createDocumentFragment();
+      files.forEach(file => {
+        const row = document.createElement('div');
+        row.className = 'download-row';
+
+        const meta = document.createElement('div');
+        const name = document.createElement('strong');
+        name.textContent = file.fileName;
+        const info = document.createElement('span');
+        const time = new Date(file.createdAt);
+        const timeText = Number.isNaN(time.getTime()) ? '' : time.toLocaleString();
+        info.textContent = `${file.code} · ${DownloadSettings.formatBytes(file.size)} · ${timeText}`;
+        meta.appendChild(name);
+        meta.appendChild(info);
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = '下载';
+        btn.dataset.fileCode = file.code;
+        btn.dataset.fileName = file.fileName;
+        btn.dataset.fileSize = file.size;
+        btn.dataset.fileType = file.contentType;
+        btn.addEventListener('click', () => handleUserFileDownload(btn, file.code));
+
+        row.appendChild(meta);
+        row.appendChild(btn);
+        fragment.appendChild(row);
+      });
+      uploadList.appendChild(fragment);
+    }
+
+    async function handleUserFileDownload(button, code) {
+      if (button.disabled) return;
+      button.disabled = true;
+      const original = button.textContent;
+      button.textContent = '请求中…';
+      try {
+        const meta = await requestPresign(code);
+        await runDownload(meta, msg => {
+          button.textContent = msg;
+        });
+      } catch (error) {
+        console.error(error);
+        alert(error.message || '下载失败，请稍后再试。');
+      } finally {
+        button.disabled = false;
+        button.textContent = original;
+      }
+    }
+
+    async function requestPresign(code) {
+      const res = await fetch(`/api/files/${code}/presign`, { credentials: 'include' });
+      if (!res.ok) throw new Error('获取下载链接失败，请确认编码是否正确。');
+      const data = await res.json();
+      if (!data || !data.url) throw new Error('服务器暂时无法提供下载链接。');
+      return {
+        url: data.url,
+        size: data.size || 0,
+        fileName: data.fileName || `download-${code}`,
+        contentType: data.contentType || 'application/octet-stream'
+      };
+    }
+
+    loadProfile();
+  </script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>登录 · 漫游聊天室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('chat-theme');
+        var theme = stored === 'dark' || stored === 'light'
+          ? stored
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: "Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+      --bg: linear-gradient(180deg,#eef2ff,#f5f3ff);
+      --bg-accent1: rgba(37,99,235,0.18);
+      --bg-accent2: rgba(124,58,237,0.2);
+      --card-bg: rgba(255,255,255,0.92);
+      --card-shadow1: rgba(15,23,42,0.16);
+      --card-shadow2: rgba(79,70,229,0.1);
+      --text: #0f172a;
+      --text-muted: #475569;
+      --hero-bg: linear-gradient(160deg, rgba(37,99,235,0.94), rgba(124,58,237,0.88));
+      --hero-text: rgba(255,255,255,0.85);
+      --button-bg: linear-gradient(135deg,#2563eb,#7c3aed);
+      --button-shadow1: rgba(79,70,229,0.32);
+      --button-shadow2: rgba(37,99,235,0.18);
+      --input-bg: rgba(255,255,255,0.86);
+      --input-border: rgba(148,163,184,0.4);
+    }
+    :root[data-theme="dark"] {
+      --bg: linear-gradient(180deg,#0f172a,#111827);
+      --bg-accent1: rgba(56,189,248,0.12);
+      --bg-accent2: rgba(139,92,246,0.12);
+      --card-bg: rgba(15,23,42,0.85);
+      --card-shadow1: rgba(8,145,178,0.24);
+      --card-shadow2: rgba(59,130,246,0.18);
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --hero-bg: linear-gradient(160deg, rgba(37,99,235,0.55), rgba(124,58,237,0.55));
+      --hero-text: rgba(226,232,240,0.78);
+      --button-shadow1: rgba(59,130,246,0.42);
+      --button-shadow2: rgba(30,64,175,0.35);
+      --input-bg: rgba(30,41,59,0.75);
+      --input-border: rgba(148,163,184,0.35);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      background:
+        radial-gradient(120% 120% at 25% -10%, var(--bg-accent1), transparent 55%),
+        radial-gradient(120% 120% at 80% 0%, var(--bg-accent2), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .container {
+      width: min(920px, 100%);
+      display: grid;
+      gap: clamp(2rem, 4vw, 3rem);
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      align-items: stretch;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 32px;
+      box-shadow:
+        0 32px 72px var(--card-shadow1),
+        0 18px 36px var(--card-shadow2);
+      backdrop-filter: blur(24px);
+      overflow: hidden;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hero {
+      padding: clamp(2rem, 4vw, 3.2rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.6rem;
+      background: var(--hero-bg);
+      color: #ffffff;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 20% -30% auto auto;
+      width: clamp(220px, 42vw, 320px);
+      height: clamp(220px, 42vw, 320px);
+      background: radial-gradient(circle, rgba(255,255,255,0.28), transparent 65%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 4vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.8;
+      max-width: 420px;
+      color: var(--hero-text);
+    }
+    .form-wrap {
+      padding: clamp(2rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    .form-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .form-header h2 {
+      font-size: clamp(1.6rem, 3vw, 1.9rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .form-header p {
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      line-height: 1.6;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.9rem 1.1rem;
+      border-radius: 16px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      font: inherit;
+      color: var(--text);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    input:focus {
+      outline: none;
+      border-color: rgba(79,70,229,0.9);
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.18);
+      background: rgba(255,255,255,0.97);
+    }
+    :root[data-theme="dark"] input:focus {
+      background: rgba(15,23,42,0.9);
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    button[type="submit"] {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--button-bg);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow:
+        0 18px 36px var(--button-shadow1),
+        0 10px 22px var(--button-shadow2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button[type="submit"]:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow:
+        0 22px 42px rgba(79,70,229,0.4),
+        0 12px 28px rgba(37,99,235,0.24);
+    }
+    button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .links a {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+    .message {
+      display: none;
+      padding: 0.85rem 1rem;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .message.show {
+      display: block;
+    }
+    .message.error {
+      background: rgba(248,113,113,0.12);
+      color: #b91c1c;
+      border: 1px solid rgba(239,68,68,0.25);
+    }
+    .message.success {
+      background: rgba(34,197,94,0.12);
+      color: #047857;
+      border: 1px solid rgba(16,185,129,0.2);
+    }
+    @media (max-width: 720px) {
+      body {
+        padding: 1.2rem;
+      }
+      .container {
+        gap: 1.4rem;
+      }
+      .card {
+        border-radius: 26px;
+      }
+      .hero {
+        border-radius: 26px;
+      }
+      .links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="card hero">
+      <h1>欢迎回来，继续漫游</h1>
+      <p>
+        登录后即可与验证通过的朋友实时畅聊，享受多端同步、个性头像与未读提醒的体验。
+      </p>
+      <p>
+        尚未注册？右侧几步即可完成账号创建，完成邮箱验证后即可发言。
+      </p>
+    </section>
+
+    <section class="card">
+      <div class="form-wrap">
+        <div class="form-header">
+          <h2>登录账号</h2>
+          <p>请输入注册邮箱和密码。邮箱未验证也可查看消息，但暂时无法发言。</p>
+        </div>
+
+        <div id="message" class="message" role="alert"></div>
+
+        <form id="login-form" novalidate>
+          <label>
+            邮箱
+            <input type="email" name="email" inputmode="email" autocomplete="email" required placeholder="you@example.com">
+          </label>
+
+          <label>
+            密码
+            <input type="password" name="password" autocomplete="current-password" required placeholder="请输入密码">
+          </label>
+
+          <div class="actions">
+            <button type="submit" id="submit-btn">
+              <span>登录</span>
+            </button>
+            <div class="links">
+              <span>没有账号？<a href="/register.html">去注册</a></span>
+              <a href="/forgot-password.html">忘记密码？</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="/theme.js"></script>
+  <script>
+    Theme.init();
+  </script>
+  <script>
+    const form = document.getElementById('login-form');
+    const messageEl = document.getElementById('message');
+    const submitBtn = document.getElementById('submit-btn');
+
+    async function checkSession() {
+      try {
+        const res = await fetch('/api/auth/session', { credentials: 'include' });
+        const data = await res.json();
+        if (data.authenticated) {
+          window.location.replace('/');
+        }
+      } catch (error) {
+        console.warn('Session check failed', error);
+      }
+    }
+
+    checkSession();
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      hideMessage();
+
+      const formData = new FormData(form);
+      const email = formData.get('email').trim();
+      const password = formData.get('password');
+
+      if (!email || !password) {
+        return showMessage('请输入邮箱和密码', 'error');
+      }
+
+      try {
+        setSubmitting(true, '登录中…');
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+          const msg = data.message || '登录失败，请检查邮箱和密码。';
+          showMessage(msg, 'error');
+          setSubmitting(false);
+          return;
+        }
+
+        showMessage('登录成功，正在跳转…', 'success');
+        setSubmitting(true, '正在进入…');
+        setTimeout(() => window.location.replace('/'), 600);
+      } catch (error) {
+        console.error(error);
+        showMessage('网络异常，请稍后再试。', 'error');
+        setSubmitting(false);
+      }
+    });
+
+    function showMessage(text, type) {
+      messageEl.textContent = text;
+      messageEl.className = `message show ${type}`;
+    }
+
+    function hideMessage() {
+      messageEl.textContent = '';
+      messageEl.className = 'message';
+    }
+
+    function setSubmitting(active, label) {
+      submitBtn.disabled = active;
+      submitBtn.querySelector('span').textContent = label || '登录';
+    }
+  </script>
+</body>
+</html>

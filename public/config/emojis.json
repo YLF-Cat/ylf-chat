@@ -1,0 +1,926 @@
+[
+  {
+    "key": "惊讶",
+    "label": "惊讶",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/0/png/0.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/0/apng/0.png"
+  },
+  {
+    "key": "撇嘴",
+    "label": "撇嘴",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/1/png/1.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/1/apng/1.png"
+  },
+  {
+    "key": "色",
+    "label": "色",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/2/png/2.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/2/apng/2.png"
+  },
+  {
+    "key": "发呆",
+    "label": "发呆",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/3/png/3.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/3/apng/3.png"
+  },
+  {
+    "key": "得意",
+    "label": "得意",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/4/png/4.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/4/apng/4.png"
+  },
+  {
+    "key": "流泪",
+    "label": "流泪",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/5/png/5.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/5/apng/5.png"
+  },
+  {
+    "key": "害羞",
+    "label": "害羞",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/6/png/6.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/6/apng/6.png"
+  },
+  {
+    "key": "闭嘴",
+    "label": "闭嘴",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/7/png/7.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/7/apng/7.png"
+  },
+  {
+    "key": "睡",
+    "label": "睡",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/8/png/8.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/8/apng/8.png"
+  },
+  {
+    "key": "大哭",
+    "label": "大哭",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/9/png/9.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/9/apng/9.png"
+  },
+  {
+    "key": "尴尬",
+    "label": "尴尬",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/10/png/10.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/10/apng/10.png"
+  },
+  {
+    "key": "发怒",
+    "label": "发怒",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/11/png/11.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/11/apng/11.png"
+  },
+  {
+    "key": "调皮",
+    "label": "调皮",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/12/png/12.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/12/apng/12.png"
+  },
+  {
+    "key": "呲牙",
+    "label": "呲牙",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/13/png/13.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/13/apng/13.png"
+  },
+  {
+    "key": "微笑",
+    "label": "微笑",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/14/png/14.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/14/apng/14.png"
+  },
+  {
+    "key": "难过",
+    "label": "难过",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/15/png/15.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/15/apng/15.png"
+  },
+  {
+    "key": "酷",
+    "label": "酷",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/16/png/16.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/16/apng/16.png"
+  },
+  {
+    "key": "抓狂",
+    "label": "抓狂",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/18/png/18.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/18/apng/18.png"
+  },
+  {
+    "key": "吐",
+    "label": "吐",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/19/png/19.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/19/apng/19.png"
+  },
+  {
+    "key": "偷笑",
+    "label": "偷笑",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/20/png/20.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/20/apng/20.png"
+  },
+  {
+    "key": "可爱",
+    "label": "可爱",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/21/png/21.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/21/apng/21.png"
+  },
+  {
+    "key": "白眼",
+    "label": "白眼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/22/png/22.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/22/apng/22.png"
+  },
+  {
+    "key": "傲慢",
+    "label": "傲慢",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/23/png/23.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/23/apng/23.png"
+  },
+  {
+    "key": "饥饿",
+    "label": "饥饿",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/24/png/24.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/24/apng/24.png"
+  },
+  {
+    "key": "困",
+    "label": "困",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/25/png/25.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/25/apng/25.png"
+  },
+  {
+    "key": "流汗",
+    "label": "流汗",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/27/png/27.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/27/apng/27.png"
+  },
+  {
+    "key": "悠闲",
+    "label": "悠闲",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/29/png/29.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/29/apng/29.png"
+  },
+  {
+    "key": "奋斗",
+    "label": "奋斗",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/30/png/30.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/30/apng/30.png"
+  },
+  {
+    "key": "咒骂",
+    "label": "咒骂",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/31/png/31.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/31/apng/31.png"
+  },
+  {
+    "key": "疑问",
+    "label": "疑问",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/32/png/32.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/32/apng/32.png"
+  },
+  {
+    "key": "嘘",
+    "label": "嘘",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/33/png/33.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/33/apng/33.png"
+  },
+  {
+    "key": "晕",
+    "label": "晕",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/34/png/34.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/34/apng/34.png"
+  },
+  {
+    "key": "折磨",
+    "label": "折磨",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/35/png/35.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/35/apng/35.png"
+  },
+  {
+    "key": "衰",
+    "label": "衰",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/36/png/36.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/36/apng/36.png"
+  },
+  {
+    "key": "骷髅",
+    "label": "骷髅",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/37/png/37.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/37/apng/37.png"
+  },
+  {
+    "key": "敲打",
+    "label": "敲打",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/38/png/38.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/38/apng/38.png"
+  },
+  {
+    "key": "再见",
+    "label": "再见",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/39/png/39.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/39/apng/39.png"
+  },
+  {
+    "key": "发抖",
+    "label": "发抖",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/41/png/41.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/41/apng/41.png"
+  },
+  {
+    "key": "爱情",
+    "label": "爱情",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/42/png/42.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/42/apng/42.png"
+  },
+  {
+    "key": "跳跳",
+    "label": "跳跳",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/43/png/43.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/43/apng/43.png"
+  },
+  {
+    "key": "猪头",
+    "label": "猪头",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/46/png/46.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/46/apng/46.png"
+  },
+  {
+    "key": "拥抱",
+    "label": "拥抱",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/49/png/49.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/49/apng/49.png"
+  },
+  {
+    "key": "蛋糕",
+    "label": "蛋糕",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/53/png/53.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/53/apng/53.png"
+  },
+  {
+    "key": "刀",
+    "label": "刀",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/56/png/56.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/56/apng/56.png"
+  },
+  {
+    "key": "咖啡",
+    "label": "咖啡",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/60/png/60.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/60/apng/60.png"
+  },
+  {
+    "key": "玫瑰",
+    "label": "玫瑰",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/63/png/63.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/63/apng/63.png"
+  },
+  {
+    "key": "凋谢",
+    "label": "凋谢",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/64/png/64.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/64/apng/64.png"
+  },
+  {
+    "key": "爱心",
+    "label": "爱心",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/66/png/66.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/66/apng/66.png"
+  },
+  {
+    "key": "心碎",
+    "label": "心碎",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/67/png/67.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/67/apng/67.png"
+  },
+  {
+    "key": "太阳",
+    "label": "太阳",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/74/png/74.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/74/apng/74.png"
+  },
+  {
+    "key": "赞",
+    "label": "赞",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/76/png/76.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/76/apng/76.png"
+  },
+  {
+    "key": "踩",
+    "label": "踩",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/77/png/77.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/77/apng/77.png"
+  },
+  {
+    "key": "握手",
+    "label": "握手",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/78/png/78.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/78/apng/78.png"
+  },
+  {
+    "key": "胜利",
+    "label": "胜利",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/79/png/79.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/79/apng/79.png"
+  },
+  {
+    "key": "飞吻",
+    "label": "飞吻",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/85/png/85.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/85/apng/85.png"
+  },
+  {
+    "key": "怄火",
+    "label": "怄火",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/86/png/86.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/86/apng/86.png"
+  },
+  {
+    "key": "冷汗",
+    "label": "冷汗",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/96/png/96.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/96/apng/96.png"
+  },
+  {
+    "key": "抠鼻",
+    "label": "抠鼻",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/98/png/98.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/98/apng/98.png"
+  },
+  {
+    "key": "鼓掌",
+    "label": "鼓掌",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/99/png/99.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/99/apng/99.png"
+  },
+  {
+    "key": "糗大了",
+    "label": "糗大了",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/100/png/100.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/100/apng/100.png"
+  },
+  {
+    "key": "坏笑",
+    "label": "坏笑",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/101/png/101.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/101/apng/101.png"
+  },
+  {
+    "key": "左哼哼",
+    "label": "左哼哼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/102/png/102.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/102/apng/102.png"
+  },
+  {
+    "key": "右哼哼",
+    "label": "右哼哼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/103/png/103.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/103/apng/103.png"
+  },
+  {
+    "key": "哈欠",
+    "label": "哈欠",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/104/png/104.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/104/apng/104.png"
+  },
+  {
+    "key": "鄙视",
+    "label": "鄙视",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/105/png/105.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/105/apng/105.png"
+  },
+  {
+    "key": "委屈",
+    "label": "委屈",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/106/png/106.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/106/apng/106.png"
+  },
+  {
+    "key": "快哭了",
+    "label": "快哭了",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/107/png/107.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/107/apng/107.png"
+  },
+  {
+    "key": "阴险",
+    "label": "阴险",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/108/png/108.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/108/apng/108.png"
+  },
+  {
+    "key": "左亲亲",
+    "label": "左亲亲",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/109/png/109.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/109/apng/109.png"
+  },
+  {
+    "key": "吓",
+    "label": "吓",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/110/png/110.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/110/apng/110.png"
+  },
+  {
+    "key": "可怜",
+    "label": "可怜",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/111/png/111.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/111/apng/111.png"
+  },
+  {
+    "key": "菜刀",
+    "label": "菜刀",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/112/png/112.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/112/apng/112.png"
+  },
+  {
+    "key": "篮球",
+    "label": "篮球",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/114/png/114.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/114/apng/114.png"
+  },
+  {
+    "key": "抱拳",
+    "label": "抱拳",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/118/png/118.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/118/apng/118.png"
+  },
+  {
+    "key": "勾引",
+    "label": "勾引",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/119/png/119.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/119/apng/119.png"
+  },
+  {
+    "key": "拳头",
+    "label": "拳头",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/120/png/120.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/120/apng/120.png"
+  },
+  {
+    "key": "差劲",
+    "label": "差劲",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/121/png/121.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/121/apng/121.png"
+  },
+  {
+    "key": "NO",
+    "label": "NO",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/123/png/123.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/123/apng/123.png"
+  },
+  {
+    "key": "OK",
+    "label": "OK",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/124/png/124.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/124/apng/124.png"
+  },
+  {
+    "key": "转圈",
+    "label": "转圈",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/125/png/125.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/125/apng/125.png"
+  },
+  {
+    "key": "挥手",
+    "label": "挥手",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/129/png/129.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/129/apng/129.png"
+  },
+  {
+    "key": "鞭炮",
+    "label": "鞭炮",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/137/png/137.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/137/apng/137.png"
+  },
+  {
+    "key": "喝彩",
+    "label": "喝彩",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/144/png/144.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/144/apng/144.png"
+  },
+  {
+    "key": "爆筋",
+    "label": "爆筋",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/146/png/146.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/146/apng/146.png"
+  },
+  {
+    "key": "棒棒糖",
+    "label": "棒棒糖",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/147/png/147.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/147/apng/147.png"
+  },
+  {
+    "key": "手枪",
+    "label": "手枪",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/169/png/169.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/169/apng/169.png"
+  },
+  {
+    "key": "茶",
+    "label": "茶",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/171/png/171.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/171/apng/171.png"
+  },
+  {
+    "key": "眨眼睛",
+    "label": "眨眼睛",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/172/png/172.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/172/apng/172.png"
+  },
+  {
+    "key": "泪奔",
+    "label": "泪奔",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/173/png/173.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/173/apng/173.png"
+  },
+  {
+    "key": "无奈",
+    "label": "无奈",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/174/png/174.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/174/apng/174.png"
+  },
+  {
+    "key": "卖萌",
+    "label": "卖萌",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/175/png/175.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/175/apng/175.png"
+  },
+  {
+    "key": "小纠结",
+    "label": "小纠结",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/176/png/176.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/176/apng/176.png"
+  },
+  {
+    "key": "喷血",
+    "label": "喷血",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/177/png/177.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/177/apng/177.png"
+  },
+  {
+    "key": "doge",
+    "label": "doge",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/179/png/179.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/179/apng/179.png"
+  },
+  {
+    "key": "骚扰",
+    "label": "骚扰",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/181/png/181.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/181/apng/181.png"
+  },
+  {
+    "key": "笑哭",
+    "label": "笑哭",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/182/png/182.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/182/apng/182.png"
+  },
+  {
+    "key": "我最美",
+    "label": "我最美",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/183/png/183.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/183/apng/183.png"
+  },
+  {
+    "key": "羊驼",
+    "label": "羊驼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/185/png/185.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/185/apng/185.png"
+  },
+  {
+    "key": "幽灵",
+    "label": "幽灵",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/187/png/187.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/187/apng/187.png"
+  },
+  {
+    "key": "点赞",
+    "label": "点赞",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/201/png/201.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/201/apng/201.png"
+  },
+  {
+    "key": "托腮",
+    "label": "托腮",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/212/png/212.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/212/apng/212.png"
+  },
+  {
+    "key": "脑阔疼",
+    "label": "脑阔疼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/262/png/262.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/262/apng/262.png"
+  },
+  {
+    "key": "沧桑",
+    "label": "沧桑",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/263/png/263.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/263/apng/263.png"
+  },
+  {
+    "key": "捂脸",
+    "label": "捂脸",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/264/png/264.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/264/apng/264.png"
+  },
+  {
+    "key": "辣眼睛",
+    "label": "辣眼睛",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/265/png/265.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/265/apng/265.png"
+  },
+  {
+    "key": "头秃",
+    "label": "头秃",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/267/png/267.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/267/apng/267.png"
+  },
+  {
+    "key": "暗中观察",
+    "label": "暗中观察",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/269/png/269.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/269/apng/269.png"
+  },
+  {
+    "key": "emm",
+    "label": "emm",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/270/png/270.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/270/apng/270.png"
+  },
+  {
+    "key": "吃瓜",
+    "label": "吃瓜",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/271/png/271.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/271/apng/271.png"
+  },
+  {
+    "key": "呵呵哒",
+    "label": "呵呵哒",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/272/png/272.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/272/apng/272.png"
+  },
+  {
+    "key": "汪汪",
+    "label": "汪汪",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/277/png/277.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/277/apng/277.png"
+  },
+  {
+    "key": "无眼笑",
+    "label": "无眼笑",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/281/png/281.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/281/apng/281.png"
+  },
+  {
+    "key": "敬礼",
+    "label": "敬礼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/282/png/282.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/282/apng/282.png"
+  },
+  {
+    "key": "狂笑",
+    "label": "狂笑",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/283/png/283.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/283/apng/283.png"
+  },
+  {
+    "key": "面无表情",
+    "label": "面无表情",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/284/png/284.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/284/apng/284.png"
+  },
+  {
+    "key": "摸鱼",
+    "label": "摸鱼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/285/png/285.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/285/apng/285.png"
+  },
+  {
+    "key": "魔鬼笑",
+    "label": "魔鬼笑",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/286/png/286.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/286/apng/286.png"
+  },
+  {
+    "key": "哦",
+    "label": "哦",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/287/png/287.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/287/apng/287.png"
+  },
+  {
+    "key": "睁眼",
+    "label": "睁眼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/289/png/289.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/289/apng/289.png"
+  },
+  {
+    "key": "摸锦鲤",
+    "label": "摸锦鲤",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/293/png/293.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/293/apng/293.png"
+  },
+  {
+    "key": "期待",
+    "label": "期待",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/294/png/294.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/294/apng/294.png"
+  },
+  {
+    "key": "拿到红包",
+    "label": "拿到红包",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/295/png/295.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/295/apng/295.png"
+  },
+  {
+    "key": "拜谢",
+    "label": "拜谢",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/297/png/297.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/297/apng/297.png"
+  },
+  {
+    "key": "元宝",
+    "label": "元宝",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/298/png/298.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/298/apng/298.png"
+  },
+  {
+    "key": "牛啊",
+    "label": "牛啊",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/299/png/299.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/299/apng/299.png"
+  },
+  {
+    "key": "胖三斤",
+    "label": "胖三斤",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/300/png/300.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/300/apng/300.png"
+  },
+  {
+    "key": "左拜年",
+    "label": "左拜年",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/302/png/302.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/302/apng/302.png"
+  },
+  {
+    "key": "右拜年",
+    "label": "右拜年",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/303/png/303.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/303/apng/303.png"
+  },
+  {
+    "key": "右亲亲",
+    "label": "右亲亲",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/305/png/305.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/305/apng/305.png"
+  },
+  {
+    "key": "牛气冲天",
+    "label": "牛气冲天",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/306/png/306.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/306/apng/306.png"
+  },
+  {
+    "key": "喵喵",
+    "label": "喵喵",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/307/png/307.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/307/apng/307.png"
+  },
+  {
+    "key": "打call",
+    "label": "打call",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/311/png/311.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/311/apng/311.png"
+  },
+  {
+    "key": "变形",
+    "label": "变形",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/312/png/312.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/312/apng/312.png"
+  },
+  {
+    "key": "菜狗",
+    "label": "菜狗",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/317/png/317.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/317/apng/317.png"
+  },
+  {
+    "key": "崇拜",
+    "label": "崇拜",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/318/png/318.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/318/apng/318.png"
+  },
+  {
+    "key": "比心",
+    "label": "比心",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/319/png/319.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/319/apng/319.png"
+  },
+  {
+    "key": "庆祝",
+    "label": "庆祝",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/320/png/320.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/320/apng/320.png"
+  },
+  {
+    "key": "嫌弃",
+    "label": "嫌弃",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/323/png/323.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/323/apng/323.png"
+  },
+  {
+    "key": "吃糖",
+    "label": "吃糖",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/324/png/324.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/324/apng/324.png"
+  },
+  {
+    "key": "惊吓",
+    "label": "惊吓",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/325/png/325.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/325/apng/325.png"
+  },
+  {
+    "key": "生气",
+    "label": "生气",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/326/png/326.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/326/apng/326.png"
+  },
+  {
+    "key": "举牌牌",
+    "label": "举牌牌",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/332/png/332.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/332/apng/332.png"
+  },
+  {
+    "key": "烟花",
+    "label": "烟花",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/333/png/333.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/333/apng/333.png"
+  },
+  {
+    "key": "豹富",
+    "label": "豹富",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/336/png/336.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/336/apng/336.png"
+  },
+  {
+    "key": "花朵脸",
+    "label": "花朵脸",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/337/png/337.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/337/apng/337.png"
+  },
+  {
+    "key": "我想开了",
+    "label": "我想开了",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/338/png/338.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/338/apng/338.png"
+  },
+  {
+    "key": "舔屏",
+    "label": "舔屏",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/339/png/339.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/339/apng/339.png"
+  },
+  {
+    "key": "打招呼",
+    "label": "打招呼",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/341/png/341.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/341/apng/341.png"
+  },
+  {
+    "key": "酸Q",
+    "label": "酸Q",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/342/png/342.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/342/apng/342.png"
+  },
+  {
+    "key": "我方了",
+    "label": "我方了",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/343/png/343.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/343/apng/343.png"
+  },
+  {
+    "key": "大怨种",
+    "label": "大怨种",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/344/png/344.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/344/apng/344.png"
+  },
+  {
+    "key": "红包多多",
+    "label": "红包多多",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/345/png/345.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/345/apng/345.png"
+  },
+  {
+    "key": "你真棒棒",
+    "label": "你真棒棒",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/346/png/346.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/346/apng/346.png"
+  },
+  {
+    "key": "大展宏兔",
+    "label": "大展宏兔",
+    "static": "https://koishi.js.org/QFace/assets/qq_emoji/347/png/347.png",
+    "animated": "https://koishi.js.org/QFace/assets/qq_emoji/347/apng/347.png"
+  }
+]
