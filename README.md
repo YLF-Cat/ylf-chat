@@ -28,3 +28,4 @@
 
 1. 在 `mailer.js` 填写你的邮箱参数
 2. 在 `config/r2.json` 填写你的对象存储参数
+3. 在 `public/config/emojis.json` 修改内置表情
